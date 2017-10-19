@@ -23,10 +23,12 @@ public class PlayerController : MonoBehaviour
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         anime = GetComponent<Animator>();
-        GoToSpawnPoint();
+
+        //GoToSpawnPoint();
         _speed = playerRigidbody2D.velocity.x;
         updateCheckpoint();
         source = GetComponent<AudioSource>();
+        //anim["PlayerDeath"].speed = 0.2f;
 	}
 	
 	// Update is called once per frame
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "ground")
+        if (col.gameObject.tag == "ground" && playerRigidbody2D.velocity.y == 0)
         {
             _grounded = true;
             _jumping = false;
@@ -97,16 +99,16 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "KillAxel")
         {
             anime.Play("PlayerDeath");
-            GoToCheckpoint();
-            //Invoke("GoToSpawnPoint", anime.playbackTime);
-            //GoToSpawnPoint();
+            //anime.SetInteger("State", 3);
+            Invoke("GoToCheckpoint", 0.1f);
+            //GoToCheckpoint();
             Debug.Log("Spawnasin perkele");
         }
 
     }
     void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.tag == "ground" && playerRigidbody2D.velocity.y >0)
+        if (col.gameObject.tag == "ground" && playerRigidbody2D.velocity.y > 0)
         {
             _grounded = false;
         }
@@ -134,13 +136,13 @@ public class PlayerController : MonoBehaviour
     }
 
     //Wanha
-    void  GoToSpawnPoint()
+    /*void  GoToSpawnPoint()
     {
         Vector3 po = transform.position;
         po.x = SpawnPoint.position.x;
         po.y = SpawnPoint.position.y;
         transform.position = po;
-    }
+    }*/
     private void Flip()
     {
         _facingRight = !_facingRight;
@@ -166,7 +168,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_jumping)
         {
-            if(playerRigidbody2D.velocity.y >0)
+            if(playerRigidbody2D.velocity.y > 0)
             {
                 anime.SetInteger("State", 3);
             }

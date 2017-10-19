@@ -80,7 +80,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.19}
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.11
 --- !u!61 &61387766827396916
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -217,6 +217,7 @@ MonoBehaviour:
   Speed: 1
   RunSpeed: 1
   SpawnPoint: {fileID: 0}
+  anim: {fileID: 0}
   JumpSound: {fileID: 8300000, guid: 27e8b11975536394e8bb2ee48d1e1188, type: 3}
 --- !u!212 &212556726434977932
 SpriteRenderer:
