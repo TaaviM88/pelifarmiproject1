@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour {
     public float activationTime = 5;
     //public int maxSpawnCount = 4;
     private int spawnCount = 0;
+    public bool destroyEnemy;
 	// Use this for initialization
 	void Start () {
         gameObject.SetActive(true);
@@ -50,6 +51,7 @@ public class EnemySpawner : MonoBehaviour {
         {
             //Activation();
             _playeronRange = true;
+           
         }
     }
     void OnTriggerExit2D(Collider2D col)
