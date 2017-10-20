@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
-  CanEnemyTurn: 1
+  CanEnemyTurn: 0
 --- !u!212 &212963049529072848
 SpriteRenderer:
   m_ObjectHideFlags: 1

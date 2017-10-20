@@ -35,5 +35,14 @@ public class EnemyMoverSimply : MonoBehaviour {
             _direction *= -1;
             }
         }
+        if(col.gameObject.CompareTag("EnemyKillAxel"))
+        {
+            DestroyObject();
+        }
+    }
+
+    void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 }

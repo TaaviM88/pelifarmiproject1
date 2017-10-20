@@ -9,6 +9,7 @@ TagManager:
   - Endpoint
   - KillAxel
   - Checkpoint
+  - EnemyKillAxel
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - 
   - Knife
-  - 
+  - Ground
   - 
   - 
   - 
