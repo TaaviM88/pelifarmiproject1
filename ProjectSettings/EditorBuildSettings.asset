@@ -4,4 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenet/Menu.unity
+    guid: d027cfeae8a1849bd82bb08d0c3d29d6
+  - enabled: 1
+    path: Assets/Scenet/Laurin taso.unity
+    guid: 6e884bb4035904984813b63dc4d4899d
+  - enabled: 1
+    path: Assets/Scenet/Sarren level.unity
+    guid: ae51fbfb20f1244a0b63be9b5a57e51c
+  - enabled: 1
+    path: Assets/Scenet/Credits.unity
+    guid: 00000000000000000000000000000000
