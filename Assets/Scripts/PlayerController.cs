@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour 
 {
-    private float _jumpForce = 5f;
+    private float _jumpForce = 3f;
     private Rigidbody2D playerRigidbody2D;
     private bool _grounded, _facingRight = true;
     public float Speed = 3f, RunSpeed = 1;
@@ -17,10 +17,15 @@ public class PlayerController : MonoBehaviour
     private AudioSource source;
     private float volLowRage = 0.5f;
     private float volHighRange = 1.0f;
-
+    private Transform GroundCheck, CeilingCheck;
+    const float groundedRadius = 0.1f, celingRadius = 0.01f;
+    private CircleCollider2D ccollider;
+     [SerializeField] private LayerMask whatIsGround;
 	// Use this for initialization
 	void Start () 
     {
+        GroundCheck = transform.Find("GroundCheck");
+        CeilingCheck = transform.Find("CeilingCheck");
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         anime = GetComponent<Animator>();
 
@@ -29,8 +34,21 @@ public class PlayerController : MonoBehaviour
         updateCheckpoint();
         source = GetComponent<AudioSource>();
         //anim["PlayerDeath"].speed = 0.2f;
+        ccollider = GetComponent<CircleCollider2D>();
 	}
-	
+
+    void FixedUpdate()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, groundedRadius, whatIsGround);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
+
+                _grounded = true;
+            }
+        }
+    }
 	// Update is called once per frame
 	void Update () 
     {
@@ -91,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "ground" && playerRigidbody2D.velocity.y == 0)
+        if (col.gameObject.tag == "ground") //&& playerRigidbody2D.velocity.y == 0)
         {
             _grounded = true;
             _jumping = false;
@@ -111,6 +129,7 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "ground" && playerRigidbody2D.velocity.y > 0)
         {
             _grounded = false;
+            _jumping = true;
         }
         
     }
@@ -120,6 +139,14 @@ public class PlayerController : MonoBehaviour
         if(col.gameObject.CompareTag("Checkpoint"))
         {
             updateCheckpoint();
+        }
+        if (col.gameObject.tag == "KillAxel")
+        {
+            anime.Play("PlayerDeath");
+            //anime.SetInteger("State", 3);
+            Invoke("GoToCheckpoint", 0.1f);
+            //GoToCheckpoint();
+            Debug.Log("Spawnasin perkele");
         }
     }
 
