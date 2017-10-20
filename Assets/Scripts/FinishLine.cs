@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class FinishLine : MonoBehaviour {
-    public int LevelIndex;
+	public string LevelIndex;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,7 +17,7 @@ public class FinishLine : MonoBehaviour {
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(LevelIndex,LoadSceneMode.Single);
+			SceneManager.LoadScene(LevelIndex,LoadSceneMode.Single);
         }
     }
 }

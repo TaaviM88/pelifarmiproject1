@@ -9,11 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenet/Menu.unity
     guid: d027cfeae8a1849bd82bb08d0c3d29d6
   - enabled: 1
+    path: Assets/Scenet/Sarren level uus.unity
+    guid: 3899ab0b1e78e46c5bf85262c9f602fe
+  - enabled: 1
+    path: Assets/Scenet/maijulevel.unity
+    guid: bf0972747eb774ead813882ea4202dda
+  - enabled: 1
+    path: Assets/Scenet/Test_scene 1.unity
+    guid: ff45d5e5511e5eb4fb6386ead2d05c90
+  - enabled: 1
     path: Assets/Scenet/Laurin taso.unity
     guid: 6e884bb4035904984813b63dc4d4899d
   - enabled: 1
-    path: Assets/Scenet/Sarren level.unity
-    guid: ae51fbfb20f1244a0b63be9b5a57e51c
-  - enabled: 1
     path: Assets/Scenet/Credits.unity
-    guid: 00000000000000000000000000000000
+    guid: eccfd671d10da4779b14ed121e2b8563

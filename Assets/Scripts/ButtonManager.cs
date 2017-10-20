@@ -8,7 +8,7 @@ public class ButtonManager : MonoBehaviour
 	public void NewGameBtn(string newGameLevel)
 	{
 		SceneManager.LoadScene (newGameLevel);
-
+		Time.timeScale = 1;
 	}
 
 	public void ExitGameBtn()
