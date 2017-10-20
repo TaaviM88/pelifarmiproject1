@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour 
 {
-    private float _jumpForce = 3f;
+    private float _jumpForce = 6f;
     private Rigidbody2D playerRigidbody2D;
     private bool _grounded, _facingRight = true;
     public float Speed = 3f, RunSpeed = 1;
@@ -85,14 +85,17 @@ public class PlayerController : MonoBehaviour
         //Käskytetään pelaajaa hyppäämään
         if (Input.GetAxis("Fire1") > 0 && _grounded == true)
         {
-            playerRigidbody2D.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
-            _grounded = false;
-            _jumping = true;
-            anime.SetInteger("State", 3);
-            float vol = Random.Range(volLowRage, volHighRange);
-          
-            //aktivoi tämä kun haluat hyppyäänen
-            //source.PlayOneShot(JumpSound);
+            if (playerRigidbody2D.velocity.y == 0)
+            {
+                playerRigidbody2D.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
+                _grounded = false;
+                _jumping = true;
+                anime.SetInteger("State", 3);
+                float vol = Random.Range(volLowRage, volHighRange);
+                //aktivoi tämä kun haluat hyppyäänen
+                //source.PlayOneShot(JumpSound);
+            }
+            
         }
 
         if (Input.GetAxis("Fire2") > 0) //&& _grounded == true)
