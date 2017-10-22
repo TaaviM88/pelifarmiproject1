@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private bool _jumping = false;
     private Vector3 latestCheckpoint;
     public AudioClip JumpSound;
+    public AudioClip DeathSound;
     private AudioSource source;
     private float volLowRage = 0.5f;
     private float volHighRange = 1.0f;
@@ -50,12 +51,69 @@ public class PlayerController : MonoBehaviour
                 _grounded = true;
             }
         }
+
+
+        MovePlayer(_speed);
+        HandleJumpAndFall();
+        if (Input.GetAxis("Horizontal") > 0 && _canMove == true)
+        {
+            //transform.Translate(new Vector3(Speed * Time.deltaTime, 0, 0));
+            if (_facingRight == false)
+            {
+                Flip();
+            }
+            playerRigidbody2D.velocity = new Vector2(Speed * RunSpeed, playerRigidbody2D.velocity.y);
+            _speed = playerRigidbody2D.velocity.x;
+            //playerRigidbody2D.velocity = new Vector2(Speed, 0); 
+        }
+
+        if (Input.GetAxis("Horizontal") < 0 && _canMove == true)
+        {
+            //transform.Translate(new Vector3(-1*Speed * Time.deltaTime, 0, 0));
+            if (_facingRight == true)
+            {
+                Flip();
+            }
+            playerRigidbody2D.velocity = new Vector2(-1 * Speed * RunSpeed, playerRigidbody2D.velocity.y);
+            _speed = playerRigidbody2D.velocity.x;
+            //playerRigidbody2D.velocity = new Vector2(-1 * Speed, 0);
+        }
+        if (Input.GetAxis("Horizontal") == 0)
+        {
+            _speed = 0;
+        }
+        //Käskytetään pelaajaa hyppäämään
+        if (Input.GetAxis("Fire1") > 0 && _grounded == true && _canMove == true)
+        {
+            if (playerRigidbody2D.velocity.y == 0)
+            {
+                playerRigidbody2D.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
+                _grounded = false;
+                _jumping = true;
+                anime.SetInteger("State", 3);
+                float vol = Random.Range(volLowRage, volHighRange);
+                //aktivoi tämä kun haluat hyppyäänen
+                source.PlayOneShot(JumpSound);
+            }
+
+        }
+
+        if (Input.GetAxis("Fire2") > 0 && _canMove == true) //&& _grounded == true)
+        {
+            RunSpeed = 2;
+        }
+        else
+        {
+            RunSpeed = 1;
+        }
+        //Debug.Log(_grounded);
+        
     }
 	// Update is called once per frame
 	void Update () 
     {
 
-        MovePlayer(_speed);
+       /* MovePlayer(_speed);
         HandleJumpAndFall();
         if (Input.GetAxis("Horizontal") > 0 && _canMove == true)
         {
@@ -95,7 +153,7 @@ public class PlayerController : MonoBehaviour
                 anime.SetInteger("State", 3);
                 float vol = Random.Range(volLowRage, volHighRange);
                 //aktivoi tämä kun haluat hyppyäänen
-                //source.PlayOneShot(JumpSound);
+                source.PlayOneShot(JumpSound);
             }
             
         }
@@ -108,7 +166,7 @@ public class PlayerController : MonoBehaviour
         {
             RunSpeed = 1;
         }
-        Debug.Log(_grounded);
+        //Debug.Log(_grounded);*/
         
 	}
 
@@ -121,12 +179,13 @@ public class PlayerController : MonoBehaviour
         }
         if (col.gameObject.tag == "KillAxel")
         {
+            _canMove = false;
             anime.Play("PlayerDeath");
             //anime.SetInteger("State", 3);
-            Invoke("GoToCheckpoint", 0.1f);
-            _canMove = false;
+            Invoke("GoToCheckpoint", 0.3f);
+           
             //GoToCheckpoint();
-            Debug.Log("Spawnasin perkele");
+            //Debug.Log("Spawnasin perkele");
         }
 
     }
@@ -149,15 +208,16 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "KillAxel")
         {
             anime.Play("PlayerDeath");
+            source.PlayOneShot(DeathSound);
             //anime.SetInteger("State", 3);
             Invoke("GoToCheckpoint", 0.1f);
             //GoToCheckpoint();
-            Debug.Log("Spawnasin perkele");
+           // Debug.Log("Spawnasin perkele");
         }
-        if (col.gameObject.tag == "Finish")
+        /*if (col.gameObject.tag == "Finish")
         {
             SceneManager.LoadScene(1,LoadSceneMode.Single);
-        }
+        }*/
     }
 
     void updateCheckpoint()
@@ -167,7 +227,8 @@ public class PlayerController : MonoBehaviour
 
     void GoToCheckpoint()
     {
-        _canMove = true;
+        //_canMove = true;
+        Invoke("EnablePlayerControls",0.3f);
         transform.position = latestCheckpoint;
         GameObject obj = GameObject.FindGameObjectWithTag("MainCamera");
         obj.gameObject.SendMessage("GoToPlayer");
@@ -215,6 +276,11 @@ public class PlayerController : MonoBehaviour
                 anime.SetInteger("State", 1);
             }
         }
+    }
+
+    void EnablePlayerControls()
+    {
+        _canMove = true;
     }
 
 }

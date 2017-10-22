@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class FinishLine : MonoBehaviour {
-	public string LevelIndex;
+	public int LevelIndex;
+    Scene sceneLoaded;
 	// Use this for initialization
 	void Start () {
-		
+        //Scene sceneLoaded = SceneManager.GetActiveScene();
+        // loads next level
+       
 	}
 	
 	// Update is called once per frame
@@ -17,7 +20,8 @@ public class FinishLine : MonoBehaviour {
     {
         if(col.gameObject.CompareTag("Player"))
         {
-			SceneManager.LoadScene(LevelIndex,LoadSceneMode.Single);
+			SceneManager.LoadScene(LevelIndex);
+            //SceneManager.LoadScene(sceneLoaded.buildIndex + 1);
         }
     }
 }

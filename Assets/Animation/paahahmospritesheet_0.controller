@@ -365,7 +365,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PlayerDeath
-  m_Speed: 0.5
+  m_Speed: 0.1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101228568338901414}
@@ -391,7 +391,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PlayerFall
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101340209838747594}
@@ -493,22 +493,22 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102094788744081188}
-    m_Position: {x: 492, y: 120, z: 0}
+    m_Position: {x: 588, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102871551882165084}
-    m_Position: {x: 216, y: 252, z: 0}
+    m_Position: {x: 156, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102602799258558624}
-    m_Position: {x: 216, y: 120, z: 0}
+    m_Position: {x: 156, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102404276412307474}
-    m_Position: {x: 492, y: 252, z: 0}
+    m_Position: {x: 588, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102387663349148452}
     m_Position: {x: 396, y: 48, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102957087257177718}
-    m_Position: {x: 431, y: 113, z: 0}
+    m_Position: {x: 780, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1818417425808698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.12, y: -3.261, z: 0}
+  m_LocalPosition: {x: -6.08, y: -2.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4288325846541082}
@@ -277,6 +277,7 @@ MonoBehaviour:
   RunSpeed: 1
   SpawnPoint: {fileID: 0}
   JumpSound: {fileID: 8300000, guid: 27e8b11975536394e8bb2ee48d1e1188, type: 3}
+  DeathSound: {fileID: 8300000, guid: 7c89538dd6a91d94ca67f70a4ee69ece, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 512
